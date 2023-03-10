@@ -89,6 +89,14 @@ function draw() {
     if (rightPressed) {
         paddleX = Math.min(paddleX + 7, canvas.width - paddleWidth);
         t1x = Math.min(t1x + 7, canvas.width - t1Width);
+        //ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var cache = this;
+        ctx.save();
+        ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the canvas
+        ctx.translate(cache.width, cache.height); //let's translate
+        ctx.rotate(Math.PI / 180 * (ang += 5)); //increment the angle and rotate the image 
+        ctx.drawImage(base_image, -cache.width / 2, -cache.height / 2, cache.width, cache.height); //draw the image ;)
+        ctx.restore(); //restore the state of canvas
     } if (leftPressed) {
         paddleX = Math.max(paddleX - 7, 0);
         t1x = Math.max(t1x - 7, 0);
