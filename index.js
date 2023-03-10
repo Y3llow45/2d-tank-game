@@ -22,9 +22,7 @@ document.addEventListener("keyup", keyUpHandler, false);
 function make_base() {
     let base_image = new Image();
     base_image.src = 'tank1_p2.png';
-    base_image.onload = function () {
-        ctx.drawImage(base_image, 400, 400);
-    }
+    ctx.drawImage(base_image, 400, 400);
 }
 
 function keyDownHandler(e) {
