@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+canvas {
+    background: #eee;
+    display: block;
+    margin: 0 auto;
+}
+
+.canvas {
+    margin-top: 28px;
+    color: #eee;
+}
+
+body {
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
