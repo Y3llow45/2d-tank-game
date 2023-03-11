@@ -6,11 +6,12 @@ var x = canvas.width / 2;
 var y = canvas.height - 30;
 var t1x = canvas.width / 4;
 var t1y = canvas.height - 50;
+var deg = 10;
 
 var dx = 3;
 var dy = -3;
 const paddleHeight = 48;
-const paddleWidth = 68;
+const paddleWidth = 70;
 const t1Height = 48;
 const t1Width = 70;
 let paddleX = (canvas.width - paddleWidth) / 2;
@@ -23,7 +24,16 @@ let downPressed = false;
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-
+function rotate_img() {
+    let base_image = new Image();
+    base_image.src = 'tank1_p.png';
+    let rad = deg * Math.Pi / 180;
+    ctx.translate(t1x + t1Width / 2, t1y + t1Height / 2);
+    ctx.rotate(rad)
+    ctx.drawImage(base_image, t1Width / 2 * -1, t1Height / 2 * -1, t1Width, t1Height)
+    ctx.rotate(rad * -1)
+    ctx.translate((t1x + t1Width / 2) * -1, (t1y + t1Height / 2) * -1);
+}
 
 function make_base() {
     let base_image = new Image();
@@ -90,13 +100,7 @@ function draw() {
         paddleX = Math.min(paddleX + 7, canvas.width - paddleWidth);
         t1x = Math.min(t1x + 7, canvas.width - t1Width);
         //ctx.clearRect(0, 0, canvas.width, canvas.height);
-        var cache = this;
-        ctx.save();
-        ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the canvas
-        ctx.translate(cache.width, cache.height); //let's translate
-        ctx.rotate(Math.PI / 180 * (ang += 5)); //increment the angle and rotate the image 
-        ctx.drawImage(base_image, -cache.width / 2, -cache.height / 2, cache.width, cache.height); //draw the image ;)
-        ctx.restore(); //restore the state of canvas
+        rotate_img()
     } if (leftPressed) {
         paddleX = Math.max(paddleX - 7, 0);
         t1x = Math.max(t1x - 7, 0);
